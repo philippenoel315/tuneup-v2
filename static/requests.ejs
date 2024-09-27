@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ski Service Requests</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ski Service Requests</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Service</th>
+                <th>Notes</th>
+                <th>Additional Pairs</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% requests.forEach(request => { %>
+                <tr>
+                    <td><%= request.id %></td>
+                    <td><%= request.name %></td>
+                    <td><%= request.email %></td>
+                    <td><%= request.phone %></td>
+                    <td><%= request.service %></td>
+                    <td><%= request.notes %></td>
+                    <td><%= JSON.stringify(request.additional_pairs) %></td>
+                    <td><%= request.created_at %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

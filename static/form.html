@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Réservation de Ski</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e6f2ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #0066cc;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0066cc;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            form {
+                padding: 20px;
+            }
+        }
+    </style>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+
+</head>
+<body>
+    <h1>Demande d'entretien de skis</h1>
+    <h4>Veuillez remplir le formulaire ci-dessous nous vous contacterons dans les plus brefs délais</h4>
+    <form action="/submit" method="post">
+        <label for="firstName">Nom complet :</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="firstName">Adresse courriel :</label>
+        <input type="text" id="email" name="email" required>
+
+        <label>Service désiré :</label>
+        <div style="margin-bottom: 20px;">
+            <div style="display: flex; flex-direction: row; align-items: baseline;">
+            <input style="margin-right: 10px;" type="radio" id="affutage-fartage" name="service" value="affutage-fartage" required>
+            <label for="affutage-fartage">Affûtage + Fartage 30$</label>
+        </div>
+        <div style="display: flex; flex-direction: row; align-items: baseline;">
+            <input style="margin-right: 10px;" type="radio" id="fartage" name="service" value="fartage">
+            <label for="fartage">Fartage 20$</label>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row; align-items: baseline;">
+            <input style="margin-right: 10px;" type="checkbox" id="livraison" name="livraison">
+            <label  for="livraison">Livraison 10$</label>
+        </div>
+        <label for="pairsCount">Nombre de paires de skis :</label>
+        <input type="number" id="pairsCount" name="pairsCount" value="1" min="1" required>
+
+   
+
+        <label for="notes">Notes :</label>
+        <textarea id="notes" name="notes" rows="6" style="width: 100%; box-sizing: border-box;"></textarea>
+
+
+
+
+
+        <button type="submit">Soumettre</button>
+    </form>
+</body>
+</html>
