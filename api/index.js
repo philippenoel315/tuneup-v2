@@ -16,13 +16,10 @@ app.get('/form', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'static', 'form.html'));
 });
 
-app.get('/welcome', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'static', 'welcome.html'));
 });
 
-app.get('/', (req, res) => {
-  res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Welcome</title></head><body><h1>Hello World</h1></body></html>');
-});
 
 // Updated submit route (without database interaction)
 app.post('/submit', (req, res) => {
