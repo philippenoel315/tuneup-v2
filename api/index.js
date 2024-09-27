@@ -9,13 +9,15 @@ const port = 3001;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '..', 'static')));
+app.use(express.static(path.join(__dirname, '..', 'assets')));
+
 
 app.get('/form', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'static', 'views', 'form.html'));
+  res.sendFile(path.join(__dirname, '..', 'static', 'form.html'));
 });
 
 app.get('/welcome', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'static', 'views', 'welcome.html'));
+  res.sendFile(path.join(__dirname, '..', 'static', 'welcome.html'));
 });
 
 app.get('/', (req, res) => {
