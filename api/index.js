@@ -32,10 +32,10 @@ app.post('/submit', async (req, res) => {
   try {
     const { name, email, service, notes, 'ajouter-paires': additionalPairs, ...rest } = req.body;
     
-sendOrderEmail(req.body);
-sendConfirmationEmail(req.body);
+await sendOrderEmail(req.body);
+await sendConfirmationEmail(req.body);
 
-    res.send('Formulaire envoyé avec succès. Vous recevrez un courriel de confirmation.');
+    await res.send('Formulaire envoyé avec succès. Vous recevrez un courriel de confirmation.');
   } catch (error) {
     console.error('Erreur lors de l\'envoi du formulaire:', error);
     res.status(500).send('Erreur lors de l\'envoi du formulaire. veuillez contacter Affûtage Pro par courriel.');
