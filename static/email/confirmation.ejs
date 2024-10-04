@@ -4,46 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demande Reçue - Affûtage Pro</title>
+    <style>
+      /* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 10px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    border-radius: 8px ;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.content {
+    padding: 20px;
+}
+
+/* Header styles */
+.header {
+    background-color: #0066cc;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Main content styles */
+.main-content {
+    padding: 20px;
+}
+
+h2 {
+    color: #0066cc;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+.summary {
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.summary ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.summary li {
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #0066cc;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0052a3;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666666;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-radius: 0 0 8px 8px;
+    padding: 20px;
+}
+
+.footer p {
+    margin: 5px 0;
+    
+    max-width: 600px;
+
+
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    .container {
+        margin: 20px;
+        width: auto;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .header, .main-content, .footer {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .button {
+        display: block;
+        text-align: center;
+    }
+}
+    </style>
 </head>
-<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #333333; background-color: #f4f4f4;">
-    <table role="presentation" style="width: 100%; border-collapse: collapse;">
-        <tr>
-            <td align="center" style="padding: 40px 0;">
-                <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    <!-- En-tête -->
-                    <tr>
-                        <td style="padding: 40px 30px; text-align: center; background-color: #0066cc; border-radius: 8px 8px 0 0;">
-                            <h1 style="margin: 0; font-size: 24px; font-weight: bold; color: #ffffff;">Affûtage Pro</h1>
-                        </td>
-                    </tr>
-                    <!-- Contenu Principal -->
-                    <tr>
-                        <td style="padding: 40px 30px;">
-                            <h2 style="margin: 0 0 20px 0; font-size: 20px; font-weight: bold; color: #0066cc;">Demande Reçue</h2>
-                            <p style="margin: 0 0 20px 0;">Cher/Chère <%= name %>,</p>
-                            <p style="margin: 0 0 20px 0;">Merci d'avoir soumis votre demande d'affûtage de ski chez Affûtage Pro. Nous avons bien reçu votre demande et sommes en train de la traiter.</p>
-                            <p style="margin: 0 0 20px 0;">Voici un résumé de votre demande :</p>
-                            <ul style="margin: 0 0 20px 0; padding-left: 20px;">
-                                <li>Service : <%= service %></li>
-                                <li>Nombre de Skis : <%= skisCount %></li>
-                                <li>Date Demandée : <%= requestedDate %></li>
-                            </ul>
-                            <p style="margin: 0 0 20px 0;">Nous vous contacterons sous peu pour confirmer votre rendez-vous et vous fournir toute information supplémentaire.</p>
-                            <p style="margin: 0 0 20px 0;">Si vous avez des questions ou si vous souhaitez apporter des modifications à votre demande, n'hésitez pas à nous contacter.</p>
-                            <a href="mailto:admin@affutagepro.com" style="display: inline-block; padding: 12px 20px; background-color: #0066cc; color: #ffffff; text-decoration: none; border-radius: 25px; font-weight: bold;">Nous Contacter</a>
-                        </td>
-                    </tr>
-                    <!-- Pied de page -->
-                    <tr>
-                        <td style="padding: 30px; text-align: center; background-color: #f8f8f8; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0 0 10px 0;">Affûtage Pro</p>
-                            <p style="margin: 0 0 10px 0;">admin@affutagepro.com</p>
-                            <p style="margin: 0;">Usage Interne Uniquement</p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+<body>
+    <div class="container">
+        <div class="content">
+            <!-- En-tête -->
+            <header class="header">
+                <h1>Affûtage Pro</h1>
+            </header>
+            
+            <!-- Contenu Principal -->
+            <main class="main-content">
+                <h2>Demande Reçue</h2>
+                <p>Cher/Chère <%= name %>,</p>
+                <p>Merci d'avoir soumis votre demande d'affûtage de ski chez Affûtage Pro. Nous avons bien reçu votre demande et sommes en train de la traiter.</p>
+                <p>Voici un résumé de votre demande :</p>
+                <div class="summary">
+                    <ul>
+                        <li><strong>Service :</strong> <%= service %></li>
+                        <li><strong>Nombre de Skis :</strong> <%= skisCount %></li>
+                        <li><strong>Date Demandée :</strong> <%= requestedDate %></li>
+                    </ul>
+                </div>
+                <p>Nous vous contacterons sous peu pour confirmer votre rendez-vous et vous fournir toute information supplémentaire.</p>
+                <p>Si vous avez des questions ou si vous souhaitez apporter des modifications à votre demande, n'hésitez pas à nous contacter.</p>
+                <div style="text-align: center;">
+                    <a href="mailto:admin@affutagepro.com" class="button">Nous Contacter</a>
+                </div>
+            </main>
+            
+         
+        </div>
+           <!-- Pied de page -->
+           <div class="footer">
+            <p>Affûtage Pro</p>
+            <p>admin@affutagepro.com</p>
+        </div>
+    </div>
 </body>
 </html>

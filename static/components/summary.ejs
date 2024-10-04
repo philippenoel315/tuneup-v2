@@ -1,0 +1,12 @@
+<div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 15px; margin: 20px 0;">
+    <h3>Résumé de la commande</h3>
+    <ul style="list-style-type: none; padding: 0;">
+        <li><strong>Numéro de commande :</strong> <%= idCommande %></li>
+        <li><strong>Service :</strong> <%= service %></li>
+        <li><strong>Nombre de paires :</strong> <%= skisCount %></li>
+        <li><strong>Date de la demande :</strong> <%= requestedDate %></li>
+    </ul>
+    <% if (notes) { %>
+        <p><strong>Notes supplémentaires :</strong> <%= notes %></p>
+    <% } %>
+</div>
