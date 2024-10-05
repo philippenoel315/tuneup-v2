@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
-const { sql } = require('@vercel/postgres');
-const { sendOrderEmail, sendConfirmationEmail } = require('./mailer');
+const { sql } = require('../db/db');  // Import sql from db.js
+const { sendOrderEmail, sendConfirmationEmail } = require('../mailer');
 
 const router = express.Router();
 
