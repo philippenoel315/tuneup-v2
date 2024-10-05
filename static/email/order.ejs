@@ -1,83 +1,50 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la Nouvelle Commande - Affûtage Pro</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #333333; background-color: #f4f4f4;">
-    <table role="presentation" style="width: 100%; border-collapse: collapse;">
+<body>
+    <table role="presentation">
         <tr>
-            <td align="center" style="padding: 40px 0;">
-                <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    <!-- En-tête -->
+            <td align="center">
+                <table role="presentation">
                     <tr>
-                        <td style="padding: 40px 30px; text-align: center; background-color: #0066cc; border-radius: 8px 8px 0 0;">
-                            <h1 style="margin: 0; font-size: 24px; font-weight: bold; color: #ffffff;">Affûtage Pro</h1>
-                            <p style="margin: 10px 0 0 0; color: #ffffff;">Détails de la Nouvelle Commande</p>
+                        <td>
+                            <h1>Affûtage Pro</h1>
+                            <p>Détails de la Nouvelle Commande</p>
                         </td>
                     </tr>
-                    <!-- Contenu Principal -->
                     <tr>
-                        <td style="padding: 40px 30px;">
-                            <h2 style="margin: 0 0 20px 0; font-size: 20px; font-weight: bold; color: #0066cc;">Informations de la Commande</h2>
-                            <table role="presentation" style="width: 100%; border-collapse: collapse;">
-                                <tr>
-                                    <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                        <strong>ID de Commande :</strong> #<%= orderId %>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                        <strong>Nom du Client :</strong> <%= name %>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                        <strong>Email :</strong> <%= email %>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                        <strong>Téléphone :</strong> <%= phone %>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                        <strong>Date Demandée :</strong> <%= requestedDate %>
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                            <h3 style="margin: 30px 0 20px 0; font-size: 18px; font-weight: bold; color: #0066cc;">Services Demandés</h3>
-                            <table role="presentation" style="width: 100%; border-collapse: collapse;">
-                                <tr style="background-color: #f8f8f8;">
-                                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #dddddd;">Service</th>
-                                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #dddddd;">Quantité</th>
-                                </tr>
-                                <% services.forEach(function(service) { %>
-                                <tr>
-                                    <td style="padding: 10px; border-bottom: 1px solid #eeeeee;"><%= service.name %></td>
-                                    <td style="padding: 10px; border-bottom: 1px solid #eeeeee;"><%= service.quantity %></td>
-                                </tr>
-                                <% }); %>
-                            </table>
+                        <td>
+                            <h2>Informations de la Commande</h2>
+                         
+                      
+                            <%- include('../components/summary', {
+                                idCommande: idCommande,
+                                service: service,
+                                skisCount: skisCount,
+                                requestedDate: requestedDate,
+                                notes: notes
+                            }) %>
+                     
                             
                             <% if (notes) { %>
-                            <h3 style="margin: 30px 0 20px 0; font-size: 18px; font-weight: bold; color: #0066cc;">Notes Supplémentaires</h3>
-                            <p style="margin: 0 0 20px 0; padding: 10px; background-color: #f8f8f8; border-radius: 4px;"><%= notes %></p>
+                            <h3>Notes Supplémentaires</h3>
+                            <p><%= notes %></p>
                             <% } %>
                             
-                            <div style="margin-top: 30px; text-align: center;">
-                                <a href="#" style="display: inline-block; padding: 12px 20px; background-color: #0066cc; color: #ffffff; text-decoration: none; border-radius: 25px; font-weight: bold;">Traiter la Commande</a>
+                            <div>
+                                <a href="#">Traiter la Commande</a>
                             </div>
                         </td>
                     </tr>
-                    <!-- Pied de page -->
                     <tr>
-                        <td style="padding: 30px; text-align: center; background-color: #f8f8f8; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0 0 10px 0;">Affûtage Pro</p>
-                            <p style="margin: 0 0 10px 0;">admin@affutagepro.com</p>
+                        <td>
+                            <p>Affûtage Pro</p>
+                            <p>admin@affutagepro.com</p>
                         </td>
                     </tr>
                 </table>

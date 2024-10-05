@@ -142,12 +142,7 @@ p {
 <body>
     <div class="container">
         <div class="content">
-            <!-- En-tête -->
-            <header class="header">
-                <h1>Affûtage Pro</h1>
-            </header>
-            
-            <!-- Contenu Principal -->
+            <%- include('../components/header') %>
             <main class="main-content">
                 <h2>Demande Reçue</h2>
                 <p>Cher/Chère <%= name %>,</p>
@@ -166,14 +161,7 @@ p {
                     <a href="mailto:admin@affutagepro.com" class="button">Nous Contacter</a>
                 </div>
             </main>
-            
-         
-        </div>
-           <!-- Pied de page -->
-           <div class="footer">
-            <p>Affûtage Pro</p>
-            <p>admin@affutagepro.com</p>
-        </div>
+            <%- include('../components/footer') %>
     </div>
 </body>
 </html>
