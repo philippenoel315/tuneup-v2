@@ -67,7 +67,6 @@
                     <th>Nom Client</th>
                     <th>Marque et Modèle</th>
                     <th>Date Demandée</th>
-                    <th>Prix Total</th>
                     <th>Statut</th>
 
                 </tr>
@@ -82,8 +81,14 @@
                         <td><%= order.user_name %></td>
                         <td><%= order.ski_name %></td>
                         <td><%= order.order_date %></td>
-                        <td><%= order.total_price %></td>
-                        <td><%= order.status %></td>
+                        <td>
+                            <select class="status-dropdown" data-order-id="<%= order.order_id  %>">
+                                <option value="En attente" <%= order.status === 'En attente' ? 'selected' : '' %>>En attente</option>
+                                <option value="En cours" <%= order.status === 'En cours' ? 'selected' : '' %>>En cours</option>
+                                <option value="Completé" <%= order.status === 'Completé' ? 'selected' : '' %>>Completé</option>
+                                <option value="Annulé" <%= order.status === 'Annulé' ? 'selected' : '' %>>Annulé</option>
+                            </select>
+                        </td>
                     </tr>
                 <% }); %>
             </tbody>
@@ -103,6 +108,29 @@
                 checkbox.checked = selectAllCheckbox.checked;
             }
         }
+        
+        document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('change', function() {
+                const orderId = this.getAttribute('data-order-id');
+                const newStatus = this.value;
+                
+                fetch('/update-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ orderId, newStatus }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Status updated successfully');
+                    } else {
+                        console.error('Failed to update status');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

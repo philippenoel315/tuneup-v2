@@ -2,6 +2,8 @@ const path = require('path');
 const ejs = require('ejs');
 const { insertOrder, getOrders } = require('../db/orderqueries');
 const { sendEmail } = require('../mailer');
+const { sql } = require('../db/db');
+
 
 exports.submitOrder = async (req, res) => {
   try {
@@ -105,3 +107,26 @@ exports.sendOrderEmail = async (data) => {
     throw new Error('An error occurred while sending the order details email.');
   }
 };
+
+exports.updateStatus = async (req, res) => {
+    try {
+        const { orderId, newStatus } = req.body;
+console.log(newStatus)
+        const updatedOrder = await sql(
+           ` UPDATE orders
+            SET status = '${newStatus}'
+            WHERE order_id = ${orderId}
+            RETURNING *`
+        );
+
+        if (!updatedOrder) {
+            return res.status(404).json({ success: false, message: 'Order not found' });
+        }
+
+        res.json({ success: true, message: 'Status updated successfully' });
+    } catch (error) {
+        console.error('Error updating status:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+};
+

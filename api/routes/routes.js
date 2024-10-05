@@ -16,4 +16,6 @@ router.post('/submit', orderController.submitOrder);
 
 router.get('/orders', orderController.getOrders);
 
+router.post('/update-status', orderController.updateStatus);
+
 module.exports = router;
