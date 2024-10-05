@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes - Affûtage Pro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #0066cc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0066cc;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .checkbox-cell {
+            width: 30px;
+            text-align: center;
+        }
+        .action-buttons {
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .action-buttons button:hover {
+            background-color: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestion des Commandes</h1>
+    
+    <form id="orderForm" action="/delete-orders" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th class="checkbox-cell">
+                        <input type="checkbox" id="selectAll" onchange="toggleAllCheckboxes()">
+                    </th>
+                    <th>ID Commande</th>
+                    <th>Nom Client</th>
+                    <th>Marque et Modèle</th>
+                    <th>Date Demandée</th>
+                    <th>Prix Total</th>
+                    <th>Statut</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(function(order) { %>
+                    <tr>
+                        <td class="checkbox-cell">
+                            <input type="checkbox" name="selectedOrders" value="<%= order.id %>">
+                        </td>
+                        <td><%= order.order_id %></td>
+                        <td><%= order.user_name %></td>
+                        <td><%= order.ski_name %></td>
+                        <td><%= order.order_date %></td>
+                        <td><%= order.total_price %></td>
+                        <td><%= order.status %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        
+        <div class="action-buttons">
+            <button type="submit">Supprimer les commandes sélectionnées</button>
+            <button type="button" onclick="window.location.href='/new-order'">Ajouter une nouvelle commande</button>
+        </div>
+    </form>
+
+    <script>
+        function toggleAllCheckboxes() {
+            var checkboxes = document.getElementsByName('selectedOrders');
+            var selectAllCheckbox = document.getElementById('selectAll');
+            for (var checkbox of checkboxes) {
+                checkbox.checked = selectAllCheckbox.checked;
+            }
+        }
+    </script>
+</body>
+</html>

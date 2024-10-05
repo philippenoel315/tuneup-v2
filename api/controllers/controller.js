@@ -1,6 +1,6 @@
 const path = require('path');
 const ejs = require('ejs');
-const { insertOrder, getOrders } = require('../db/orderQueries');
+const { insertOrder, getOrders } = require('../db/orderqueries');
 const { sendEmail } = require('../mailer');
 
 exports.submitOrder = async (req, res) => {
@@ -44,7 +44,14 @@ exports.submitOrder = async (req, res) => {
 exports.getOrders = async (req, res) => {
   try {
     const result = await getOrders();
-    res.json(result);
+    const orders = result.rows;
+console.log(orders)
+    const html = await ejs.renderFile(
+      path.join(__dirname, '..', '..', 'static', 'orders-table.ejs'), 
+      { orders }
+    );
+
+    res.send(html);
   } catch (error) {
     console.error('Error fetching orders:', error);
     res.status(500).send('An error occurred while fetching orders.');
