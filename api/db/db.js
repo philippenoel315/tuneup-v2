@@ -1,32 +1,35 @@
-const { sql: vercelSql } = require('@vercel/postgres');
-const { Pool } = require('pg');
+const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv');
 const path = require('path');
 
 const envFile = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
-// dotenv.config({ path: path.resolve(process.cwd(), envFile) });
-
-dotenv.config();  
+dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-let sql;
+let sequelize;
 
 if (isProduction) {
-  sql = vercelSql;
-} else {
-
-  console.log("Using local database...");
-
-  const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
+  sequelize = new Sequelize(process.env.POSTGRES_URL, {
+    dialect: 'postgres',
+    ssl: true,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
   });
-  sql = pool.query.bind(pool);
+} else {
+  sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: 'postgres',
+  });
 }
 
+sequelize.authenticate()
+  .then(() => console.log('Database connection has been established successfully.'))
+  .catch(err => console.error('Unable to connect to the database:', err));
 
-module.exports = { sql };
+module.exports = sequelize;

@@ -1,24 +1,23 @@
 const path = require('path');
 const ejs = require('ejs');
-const { insertOrder, getOrders } = require('../db/orderqueries');
 const { sendEmail } = require('../mailer');
 const { sql } = require('../db/db');
 
 
 exports.submitOrder = async (req, res) => {
   try {
-    const { name, email, service, skisCount, requestedDate } = req.body;
+    const { user_name, email, service, skisCount, requestedDate } = req.body;
     
     // Generate a simple order ID
     const orderId = Date.now().toString();
 
     // Insert order into database
-    await insertOrder(orderId, name, email, service, skisCount, requestedDate);
+    await insertOrder(orderId, user_name, email, service, skisCount, requestedDate);
 
     // Prepare data for emails and confirmation page
     const emailData = {
       orderId,
-      name,
+      user_name,
       email,
       service,
       skisCount,

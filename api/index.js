@@ -5,6 +5,9 @@ const ejs = require('ejs');
 const fs = require('fs').promises;
 const testRoutes = require('./test/testroutes');
 const routes = require('./routes/routes');
+const sequelize = require('./db/db');
+const Order = require('./models/order'); 
+const User = require('./models/user'); 
 
 const app = express();
 const port = 3001;
@@ -21,6 +24,12 @@ app.set('views', path.join(__dirname, '..', 'static', 'email'));
 
 // Use the routes from routes.js
 app.use('/', routes);
+
+sequelize.sync({ alter: true })
+  .then(() => console.log('Database synced'))
+  .catch(err => console.error('Error syncing database:', err));
+
+  
 
 app.listen(port, () => {
   console.log(`App is running at http://localhost:${port}`);
