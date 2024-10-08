@@ -3,8 +3,13 @@ import sequelize from '../db/db.js';
 
 interface OrderAttributes {
   order_id: number;
-  user_name: string;
-  ski_name: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  ski_brand: string;
+  ski_model: string;
+  ski_length: number;
+  service: string;
   order_date: Date;
   status: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
 }
@@ -13,8 +18,13 @@ interface OrderCreationAttributes extends Optional<OrderAttributes, 'order_id'> 
 
 class Order extends Model<OrderAttributes, OrderCreationAttributes> implements OrderAttributes {
   public order_id!: number;
-  public user_name!: string;
-  public ski_name!: string;
+  public name!: string;
+  public ski_brand!: string;
+  public ski_model!: string;
+  public ski_length!: number;
+  public email!: string;
+  public phoneNumber!: string;
+  public service!: string;
   public order_date!: Date;
   public status!: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
 }
@@ -25,11 +35,31 @@ Order.init({
     primaryKey: true,
     autoIncrement: true
   },
-  user_name: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  ski_name: {
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  phoneNumber: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  ski_brand: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  ski_model: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  ski_length: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  service: {
     type: DataTypes.STRING,
     allowNull: false
   },

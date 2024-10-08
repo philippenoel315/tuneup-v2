@@ -31,7 +31,10 @@
             font-weight: bold;
         }
         input[type="text"],
+        input[type="email"],
+        input[type="tel"],
         input[type="date"],
+        textarea,
         input[type="number"] {
             width: 100%;
             padding: 10px;
@@ -71,39 +74,46 @@
     <h1>Demande d'entretien de skis</h1>
     <h4>Veuillez remplir le formulaire ci-dessous nous vous contacterons dans les plus brefs délais</h4>
     <form action="/submit" method="post">
-        <label for="firstName">Nom complet :</label>
+        <label for="name">Nom complet :</label>
         <input type="text" id="name" name="name" required>
 
-        <label for="firstName">Adresse courriel :</label>
-        <input type="text" id="email" name="email" required>
+        <label for="email">Adresse courriel :</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="phoneNumber">Numéro de téléphone :</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+        <label for="ski_brand">Marque de ski :</label>
+        <input type="text" id="ski_brand" name="ski_brand" required>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <div style="flex: 1; margin-right: 10px;">
+                <label for="ski_model">Modèle de ski :</label>
+                <input type="text" id="ski_model" name="ski_model" required>
+            </div>
+            <div style="flex: 1;">
+                <label for="ski_length">Longueur (cm) :</label>
+                <input type="number" id="ski_length" name="ski_length" min="0" max="300" required>
+            </div>
+        </div>
 
         <label>Service désiré :</label>
         <div style="margin-bottom: 20px;">
             <div style="display: flex; flex-direction: row; align-items: baseline;">
-            <input style="margin-right: 10px;" type="radio" id="affutage-fartage" name="service" value="affutage-fartage" required>
-            <label for="affutage-fartage">Affûtage + Fartage 30$</label>
-        </div>
-        <div style="display: flex; flex-direction: row; align-items: baseline;">
-            <input style="margin-right: 10px;" type="radio" id="fartage" name="service" value="fartage">
-            <label for="fartage">Fartage 20$</label>
+                <input style="margin-right: 10px;" type="radio" id="affutage-fartage" name="service" value="Affûtage + Fartage" required>
+                <label for="affutage-fartage">Affûtage + Fartage 30$</label>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: baseline;">
+                <input style="margin-right: 10px;" type="radio" id="fartage" name="service" value="Fartage">
+                <label for="fartage">Fartage 20$</label>
             </div>
         </div>
 
-        <div style="display: flex; flex-direction: row; align-items: baseline;">
-            <input style="margin-right: 10px;" type="checkbox" id="livraison" name="livraison">
-            <label  for="livraison">Livraison 10$</label>
-        </div>
-        <label for="pairsCount">Nombre de paires de skis :</label>
-        <input type="number" id="pairsCount" name="pairsCount" value="1" min="1" required>
-
-   
+        <input type="hidden" name="order_date" value="<?php echo date('Y-m-d'); ?>">
+        <input type="hidden" name="status" value="En attente">
 
         <label for="notes">Notes :</label>
         <textarea id="notes" name="notes" rows="6" style="width: 100%; box-sizing: border-box;"></textarea>
-
-
-
-
 
         <button type="submit">Soumettre</button>
     </form>

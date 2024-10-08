@@ -1,15 +1,20 @@
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import express, { Router, Request, Response } from 'express';
 import path from 'path';
 import * as orderController from '../controllers/controller.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const router: Router = express.Router();
 
 router.get('/form', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'static', 'form.html'));
+  res.sendFile(join(__dirname, '..', '..', 'static', 'form.html'));
 });
 
 router.get('/', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'static', 'welcome.html'));
+  res.sendFile(join(__dirname, '..', '..', 'static', 'welcome.html'));
 });
 
 router.post('/submit', orderController.submitOrder);
