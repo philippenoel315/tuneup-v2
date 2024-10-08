@@ -1,68 +1,61 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { EmailOptions } from '../types/types.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 import ejs from 'ejs';
 import { Request, Response } from 'express';
 import { sendEmail } from '../mailer.js';
 import sequelize  from '../db/db.js';
 import Order from '../models/order.js';
+import { OrderAttributes } from '../types/types.js';
+import { searchImages } from '../utils/utlis.js';
 
-interface OrderData {
-  user_name: string;
-  email: string;
-  service: string;
-  skisCount: number;
-  requestedDate: string;
-}
 
-interface EmailData extends OrderData {
-  orderId: string;
-}
-
-interface ConfirmationEmailData {
-  idCommande: string;
-  name: string;
-  email: string;
-  service: string;
-  skisCount: number;
-  requestedDate: string;
-  notes?: string;
-}
-
-interface OrderEmailData {
-  orderId: string;
-  name: string;
-  email: string;
-  service: string;
-  pairsCount: number;
-  notes?: string;
-  phone?: string;
-}
-
-export const submitOrder = async (req: Request, res: Response) => {
+export async function submitOrder(req: Request, res: Response) {
   try {
-    const { user_name, email, service, skisCount, requestedDate }: OrderData = req.body;
+    const { name, email, phoneNumber, ski_brand, ski_model, ski_length, service, order_date, status }: OrderAttributes = req.body;
     
-    const orderId = Date.now().toString();
 
-    const emailData: EmailData = {
-      orderId,
-      user_name,
-      email,
-      service,
-      skisCount,
-      requestedDate
+    const emailData: OrderAttributes = {
+      name, email, phoneNumber, ski_brand, ski_model, ski_length, service, order_date, status,
+      notes: '' // Use nullish coalescing operator
     };
 
-    const confirmationHtml = await ejs.renderFile(
-      path.join(__dirname, '..', '..', 'static', 'email', 'confirmation-page.ejs'), 
-      emailData
-    );
+    const newOrder = await Order.create(emailData);
 
-    res.send(confirmationHtml);
+//Template de confirmation
+
+    // const confirmationHtml = await ejs.renderFile(
+    //   path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
+    //   emailData
+    // );
+
+
+    const imageUrls = await searchImages(ski_brand + ' ' + ski_model);
+
+        const confirmationHtml = await ejs.renderFile(
+      path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), 
+      { ...emailData, imageUrls }
+    );
+    console.log(emailData.email);  
+const options:EmailOptions = {to: 'philippe.noel@hotmail.com', subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Test', html: confirmationHtml};
+
+   await sendEmail(options);
+
+    // Send the response only once
+    res.status(200).json({ message: 'Order submitted successfully' });
   } catch (error) {
-    console.error('Error submitting form:', error);
-    res.status(500).send('An error occurred while submitting the form. Please contact Affûtage Pro by email.');
+    console.error('Error submitting order:', error);
+    // Only send error response if headers haven't been sent yet
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
   }
-};
+}
 
 export const getOrders = async (req: Request, res: Response) => {
   try {
@@ -73,53 +66,53 @@ export const getOrders = async (req: Request, res: Response) => {
   }
 };
 
-export const sendConfirmationEmail = async (data: ConfirmationEmailData) => {
-  try {
-    const { idCommande, name, email, service, skisCount, requestedDate, notes } = data;
-    const html = await ejs.renderFile(path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), {
-      idCommande,
-      name,
-      service,
-      skisCount,
-      requestedDate,
-      notes
-    });
+// export const sendConfirmationEmail = async (data: OrderAttributes) => {
+//   try {
+//     const { id, name, email, service, ski_length, order_date, notes } = data;
+//     const html = await ejs.renderFile(path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), {
+//       id,
+//       name,
+//       service,
+//       skisCount,
+//       requestedDate,
+//       notes
+//     });
 
-    const subject = 'Confirmation de votre demande - Affûtage Pro';
+//     const subject = 'Confirmation de votre demande - Affûtage Pro';
     
-    await sendEmail({ to: email, subject, text: '', html });
-    console.log('Confirmation email sent successfully!');
-  } catch (error) {
-    console.error('Error sending confirmation email:', error);
-    throw new Error('An error occurred while sending the confirmation email.');
-  }
-};
+//     await sendEmail({ to: email, subject, text: '', html });
+//     console.log('Confirmation email sent successfully!');
+//   } catch (error) {
+//     console.error('Error sending confirmation email:', error);
+//     throw new Error('An error occurred while sending the confirmation email.');
+//   }
+// };
 
-export const sendOrderEmail = async (data: OrderEmailData) => {
-  try {
-    const { orderId, name, email, service, pairsCount, notes, phone } = data;
-    const requestedDate = new Date().toLocaleDateString('fr-FR');
-    const services = [{ name: service, quantity: pairsCount }];
-    const html = await ejs.renderFile(path.join(__dirname, '..', '..', 'static', 'email', 'order.ejs'), {
-      orderId,
-      name,
-      email,
-      phone: phone || 'Non fourni',
-      requestedDate,
-      pairsCount,
-      services,
-      notes
-    });
+// export const sendOrderEmail = async (data: OrderEmailData) => {
+//   try {
+//     const { orderId, name, email, service, pairsCount, notes, phone } = data;
+//     const requestedDate = new Date().toLocaleDateString('fr-FR');
+//     const services = [{ name: service, quantity: pairsCount }];
+//     const html = await ejs.renderFile(path.join(__dirname, '..', '..', 'static', 'email', 'order.ejs'), {
+//       orderId,
+//       name,
+//       email,
+//       phone: phone || 'Non fourni',
+//       requestedDate,
+//       pairsCount,
+//       services,
+//       notes
+//     });
 
-    const subject = `Nouvelle Commande - Affûtage Pro`;
+//     const subject = `Nouvelle Commande - Affûtage Pro`;
     
-    await sendEmail({ to: 'admin@affutagepro.com', subject, text: '', html });
-    console.log('Order details email sent successfully!');
-  } catch (error) {
-    console.error('Error sending order details email:', error);
-    throw new Error('An error occurred while sending the order details email.');
-  }
-};
+//     await sendEmail({ to: 'admin@affutagepro.com', subject, text: '', html });
+//     console.log('Order details email sent successfully!');
+//   } catch (error) {
+//     console.error('Error sending order details email:', error);
+//     throw new Error('An error occurred while sending the order details email.');
+//   }
+// };
 
 export const updateStatus = async (req: Request, res: Response) => {
   try {

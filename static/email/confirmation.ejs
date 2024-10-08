@@ -144,6 +144,9 @@ p {
         <div class="content">
             <%- include('../components/header') %>
             <main class="main-content">
+                <div style="position: relative; height: 150px; margin-bottom: 20px;">
+                    <img src="<%= imageUrls[0] %>" alt="Image du ski" style="position: absolute; top: 0; right: 0; width: 150px; height: auto; object-fit: cover;">
+                </div>
                 <h2>Demande Reçue</h2>
                 <p>Cher/Chère <%= name %>,</p>
                 <p>Merci d'avoir soumis votre demande d'affûtage de ski chez Affûtage Pro. Nous avons bien reçu votre demande et sommes en train de la traiter.</p>
@@ -151,8 +154,6 @@ p {
                 <div class="summary">
                     <ul>
                         <li><strong>Service :</strong> <%= service %></li>
-                        <li><strong>Nombre de Skis :</strong> <%= skisCount %></li>
-                        <li><strong>Date Demandée :</strong> <%= requestedDate %></li>
                     </ul>
                 </div>
                 <p>Nous vous contacterons sous peu pour confirmer votre rendez-vous et vous fournir toute information supplémentaire.</p>

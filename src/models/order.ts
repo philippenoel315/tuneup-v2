@@ -1,23 +1,8 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../db/db.js';
-
-interface OrderAttributes {
-  order_id: number;
-  name: string;
-  email: string;
-  phoneNumber: string;
-  ski_brand: string;
-  ski_model: string;
-  ski_length: number;
-  service: string;
-  order_date: Date;
-  status: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
-}
-
-interface OrderCreationAttributes extends Optional<OrderAttributes, 'order_id'> {}
+import { OrderAttributes, OrderCreationAttributes } from '../types/types.js';
 
 class Order extends Model<OrderAttributes, OrderCreationAttributes> implements OrderAttributes {
-  public order_id!: number;
   public name!: string;
   public ski_brand!: string;
   public ski_model!: string;
@@ -26,15 +11,11 @@ class Order extends Model<OrderAttributes, OrderCreationAttributes> implements O
   public phoneNumber!: string;
   public service!: string;
   public order_date!: Date;
+  public notes!: string;
   public status!: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
 }
 
 Order.init({
-  order_id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
   name: {
     type: DataTypes.STRING,
     allowNull: false
@@ -66,6 +47,10 @@ Order.init({
   order_date: {
     type: DataTypes.DATE,
     allowNull: false
+  },
+  notes: {
+    type: DataTypes.STRING,
+    allowNull: true
   },
   status: {
     type: DataTypes.ENUM('En attente', 'En cours', 'Completé', 'Annulé'),

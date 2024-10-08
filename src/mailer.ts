@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import path from 'path';
+import { EmailOptions } from './types/types.js';
 
 const envFile = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
 dotenv.config({ path: path.resolve(process.cwd(), envFile) });
@@ -18,17 +19,12 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-interface EmailOptions {
-  to: string;
-  subject: string;
-  text: string;
-  html: string;
-}
+
 
 const sendEmail = async ({ to, subject, text, html }: EmailOptions) => {
   try {
     const info = await transporter.sendMail({
-      from: '"Affutage Pro" <admin@affutagepro.com>',
+      from: 'admin@affutagepro.com',
       to,
       subject,
       text,
