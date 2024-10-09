@@ -10,7 +10,6 @@ class Order extends Model<OrderAttributes, OrderCreationAttributes> implements O
   public email!: string;
   public phoneNumber!: string;
   public service!: string;
-  public order_date!: Date;
   public notes!: string;
   public status!: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
 }
@@ -42,10 +41,6 @@ Order.init({
   },
   service: {
     type: DataTypes.STRING,
-    allowNull: false
-  },
-  order_date: {
-    type: DataTypes.DATE,
     allowNull: false
   },
   notes: {

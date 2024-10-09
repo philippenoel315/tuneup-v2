@@ -8,7 +8,6 @@ export interface OrderAttributes {
   ski_model: string;
   ski_length: number;
   service: string;
-  order_date: Date;
   status: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
   notes: string;
 }

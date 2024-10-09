@@ -1,31 +1,34 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { EmailOptions } from '../types/types.js';
+import ejs from 'ejs';
+import { Request, Response } from 'express';
+import { sendEmail } from '../mailer.js';
+import Order from '../models/order.js';
+import { OrderAttributes } from '../types/types.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-import ejs from 'ejs';
-import { Request, Response } from 'express';
-import { sendEmail } from '../mailer.js';
-import sequelize  from '../db/db.js';
-import Order from '../models/order.js';
-import { OrderAttributes } from '../types/types.js';
-import { searchImages } from '../utils/utlis.js';
-
-
 export async function submitOrder(req: Request, res: Response) {
   try {
-    const { name, email, phoneNumber, ski_brand, ski_model, ski_length, service, order_date, status }: OrderAttributes = req.body;
-    
+    const { name, email, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
+    console.log(req.body);  
 
     const emailData: OrderAttributes = {
-      name, email, phoneNumber, ski_brand, ski_model, ski_length, service, order_date, status,
+      name, email, phoneNumber, ski_brand, ski_model, ski_length, service, status,
       notes: '' // Use nullish coalescing operator
     };
-
-    const newOrder = await Order.create(emailData);
+try{
+  await Order.create(emailData);
+}
+catch(error){
+  throw new Error(error);
+}
+   
+ 
+    
 
 //Template de confirmation
 
@@ -35,14 +38,12 @@ export async function submitOrder(req: Request, res: Response) {
     // );
 
 
-    const imageUrls = await searchImages(ski_brand + ' ' + ski_model);
 
         const confirmationHtml = await ejs.renderFile(
       path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), 
-      { ...emailData, imageUrls }
+      {name: name, email: email, service: service, ski_length: ski_length, notes: notes}
     );
-    console.log(emailData.email);  
-const options:EmailOptions = {to: 'philippe.noel@hotmail.com', subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Test', html: confirmationHtml};
+const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Confirmation', html: confirmationHtml};
 
    await sendEmail(options);
 
