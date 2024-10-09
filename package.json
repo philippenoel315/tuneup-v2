@@ -10,8 +10,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "type-check": "tsc -p tsconfig.json --noEmit"
-
   },
+  "engines": {
+    "node": ">=16.x <=20.x",
+    "npm": ">=6.x"
+  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
