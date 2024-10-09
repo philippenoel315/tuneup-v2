@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You for Your Order - Alpine Edge Tuning</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Merci pour votre commande - Affûtage Pro</title>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <table role="presentation" class="main-table">
@@ -14,46 +14,47 @@
                     <!-- Header -->
                     <tr>
                         <td class="header">
-                            <h1>Alpine Edge Tuning</h1>
+                            <h1>Affûtage Pro</h1>
                         </td>
                     </tr>
                     <!-- Main Content -->
                     <tr>
                         <td class="main-content">
-                            <h2>Thank You for Your Order!</h2>
-                            <p>Dear [Customer Name],</p>
-                            <p>We wanted to take a moment to thank you for choosing Alpine Edge Tuning for your ski maintenance needs. We truly appreciate your business and trust in our services.</p>
-                            <p>Your order details:</p>
+                            <h2>Merci pour votre commande!</h2>
+                            <p>Cher/Chère <%= name %>,</p>
+                            <p>Nous tenons à vous remercier d'avoir choisi Affûtage Pro pour l'entretien de vos skis. Nous apprécions vraiment votre confiance en nos services.</p>
+                            <p>Détails de votre commande :</p>
                             <table role="presentation" class="order-details">
                                 <tr>
-                                    <td class="order-label"><strong>Order Number:</strong></td>
-                                    <td class="order-value">#12345</td>
+                                    <td class="order-label"><strong>Service(s) :</strong></td>
+                                    <td class="order-value"><%= service %></td>
                                 </tr>
                                 <tr>
-                                    <td class="order-label"><strong>Service(s):</strong></td>
-                                    <td class="order-value">Edge Sharpening, Base Waxing</td>
+                                    <td class="order-label"><strong>Marque de ski :</strong></td>
+                                    <td class="order-value"><%= ski_brand %></td>
                                 </tr>
                                 <tr>
-                                    <td class="order-label"><strong>Estimated Completion:</strong></td>
-                                    <td class="order-value">March 20, 2024</td>
+                                    <td class="order-label"><strong>Modèle de ski :</strong></td>
+                                    <td class="order-value"><%= ski_model %></td>
+                                </tr>
+                                <tr>
+                                    <td class="order-label"><strong>Longueur de ski :</strong></td>
+                                    <td class="order-value"><%= ski_length %> cm</td>
                                 </tr>
                             </table>
-                            <p>We're working hard to ensure your skis are in perfect condition for your next adventure on the slopes. Our expert technicians will give your equipment the care and attention it deserves.</p>
-                            <p>If you have any questions or need to make changes to your order, please don't hesitate to contact us. We're here to help!</p>
+                            <p>Nous travaillons dur pour nous assurer que vos skis seront en parfait état pour votre prochaine aventure sur les pentes. Nos techniciens experts donneront à votre équipement tout le soin et l'attention qu'il mérite.</p>
+                            <p>Si vous avez des questions ou besoin de modifier votre commande, n'hésitez pas à nous contacter. Nous sommes là pour vous aider !</p>
                             <div class="cta-container">
-                                <a href="mailto:info@alpineedgetuning.com" class="cta-button">Contact Us</a>
+                                <a href="mailto:admin@affutagepro.com" class="cta-button">Contactez-nous</a>
                             </div>
-                            <p class="closing-note">Thank you again for choosing Alpine Edge Tuning. We look forward to helping you achieve peak performance on the mountain!</p>
+                            <p class="closing-note">Merci encore d'avoir choisi Affûtage Pro. Nous avons hâte de vous aider à atteindre des performances optimales sur la montagne !</p>
                         </td>
                     </tr>
                     <!-- Footer -->
                     <tr>
                         <td class="footer">
-                            <p>Alpine Edge Tuning</p>
-                            <p>123 Powder Lane, Snowville, QC</p>
-                            <p>Phone: (555) 123-4567</p>
-                            <p class="social-text">Follow us on social media for tips and updates!</p>
-                         
+                            <p>Affûtage Pro</p>
+                   
                         </td>
                     </tr>
                 </table>
