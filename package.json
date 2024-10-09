@@ -12,8 +12,7 @@
     "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "engines": {
-    "node": ">=16.x <=20.x",
-    "npm": ">=6.x"
+    "node": "20.x"
   },
 
   "keywords": [],
