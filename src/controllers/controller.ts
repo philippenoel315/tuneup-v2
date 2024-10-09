@@ -23,7 +23,7 @@ export async function submitOrder(req: Request, res: Response) {
 try{
   await Order.create(emailData);
 }
-catch(error){
+catch(error:any){
   throw new Error(error);
 }
    
