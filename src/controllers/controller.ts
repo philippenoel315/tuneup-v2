@@ -32,10 +32,10 @@ catch(error:any){
 
 //Template de confirmation
 
-    const thankYouHtml = await ejs.renderFile(
-      path.join(__dirname, '..', '..', 'static', 'thank-you.ejs'), 
-      emailData
-    );
+    // const confirmationHtml = await ejs.renderFile(
+    //   path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
+    //   emailData
+    // );
 
 
 
@@ -48,7 +48,7 @@ const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande
    await sendEmail(options);
 
     // Send the response only once
-    res.status(200).send(thankYouHtml);
+    res.status(200).json({ message: 'Order submitted successfully' });
   } catch (error) {
     console.error('Error submitting order:', error);
     // Only send error response if headers haven't been sent yet
