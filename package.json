@@ -8,7 +8,9 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "type-check": "tsc -p tsconfig.json --noEmit"
+
   },
   "keywords": [],
   "author": "",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.6.11",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "your_shared_tsconfig": "workspace:*"
   }
 }
