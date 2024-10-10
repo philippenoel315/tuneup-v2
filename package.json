@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "type-check": "tsc -p tsconfig.json --noEmit"
+    "start": "npx tsx src/index.ts",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
     "node": "20.x"
@@ -30,8 +30,7 @@
     "pip": "^0.0.1",
     "sequelize": "^6.37.4",
     "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7",
-    "ts-node": "^10.9.2"
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
@@ -41,6 +40,7 @@
     "@types/node-fetch": "^2.6.11",
     "@types/nodemailer": "^6.4.16",
     "@types/validator": "^13.12.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   }
 }
