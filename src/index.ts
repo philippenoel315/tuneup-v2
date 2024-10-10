@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import router from './routes/routes.js';
 import sequelize from './db/db.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,9 +23,9 @@ app.set('views', join(__dirname, '..', 'static', 'email'));
 
 app.use('/', router);
 
-sequelize.sync({ alter: true })
-  .then(() => console.log('Database synced'))
-  .catch((err: Error) => console.error('Error syncing database:', err));
+// sequelize.sync({ alter: true })
+//   .then(() => console.log('Database synced'))
+//   .catch((err: Error) => console.error('Error syncing database:', err));
 
 app.listen(process.env.PORT, () => {
   console.log(`App is running at http://localhost:${process.env.PORT}`);
