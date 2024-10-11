@@ -5,11 +5,9 @@ import path from 'path';
 const envFile = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
 dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 let sequelize: Sequelize;
 
-if (isProduction) {
+if (false) {
   sequelize = new Sequelize(process.env.POSTGRES_URL!, {
     dialect: 'postgres',
     ssl: true,
