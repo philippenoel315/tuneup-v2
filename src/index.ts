@@ -23,11 +23,10 @@ app.set('views', join(__dirname, '..', 'static', 'email'));
 
 app.use('/', router);
 
-// sequelize.sync({ alter: true })
-//   .then(() => console.log('Database synced'))
-//   .catch((err: Error) => console.error('Error syncing database:', err));
+sequelize.sync({ alter: true })
+  .then(() => console.log('Database synced'))
+  .catch((err: Error) => console.error('Error syncing database:', err));
 
 app.listen(process.env.PORT, () => {
   console.log(`App is running at http://localhost:${process.env.PORT}`);
 });
-//
