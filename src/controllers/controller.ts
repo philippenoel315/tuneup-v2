@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 export async function submitOrder(req: Request, res: Response) {
   try {
     const { name, email, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
-    console.log(req.body);  
+      
 
     const emailData: OrderAttributes = {
       name, email, phoneNumber, ski_brand, ski_model, ski_length, service, status,
@@ -32,10 +32,10 @@ catch(error:any){
 
 //Template de confirmation
 
-    // const confirmationHtml = await ejs.renderFile(
-    //   path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
-    //   emailData
-    // );
+     const thankyouHtml = await ejs.renderFile(
+       path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
+       emailData
+    );
 
 
 
@@ -48,7 +48,7 @@ const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande
    await sendEmail(options);
 
     // Send the response only once
-    res.status(200).json({ message: 'Order submitted successfully' });
+    res.status(200).send(thankyouHtml);
   } catch (error) {
     console.error('Error submitting order:', error);
     // Only send error response if headers haven't been sent yet
