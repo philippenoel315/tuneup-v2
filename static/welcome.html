@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affutage Pro - Services experts d'affûtage de skis</title>
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=105024&format=png&color=000000" type="image/x-icon">
     <style>
         body, html {
             margin: 0;
@@ -15,15 +16,9 @@
         .container {
             width: 90%;
             max-width: 1200px;
-            margin: auto;
             padding: 0 20px;
         }
-        /* Styles de l'en-tête */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-        }
+     
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -59,13 +54,14 @@
             background-position: center;
             height: 60vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: #fff;
         }
         .hero-content {
-            background-color: rgba(0, 0, 0, 0.7);
+            /* background-color: rgba(0, 0, 0, 0.7); */
             padding: 2rem;
             border-radius: 8px;
         }
@@ -86,7 +82,12 @@
             background-color: #0052a3;
         }
         .services {
+            width: 90%;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin:auto ;
             padding: 4rem 0;
+
             background-color: #fff;
         }
         .services h2 {
@@ -183,30 +184,69 @@
             font-weight: bold;
             margin: 0 0 16px 0;
         }
+
+        @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.logo img {
+    animation: fadeIn 3s ease-out; /* Adjust duration as needed */
+    animation-fill-mode: forwards; /* Makes the element keep its final state */
+}
+
+
+.btn {
+    animation: fadeIn 3s ease-out; 
+    animation-fill-mode: forwards;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: #008CBA;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #005f73; /* Darker shade on hover */
+    transform: scale(1.1);
+}
+
+
+
     </style>
 </head>
 <body>
     <header>
-        <div class="container header-content">
-            <div class="logo">
-                <img src="/logo.webp" alt="Logo de Alpine Edge Tuning" width="40" height="40" style="border-radius: 50%;">
-                <h1>Affûtage Pro</h1>
-            </div>
-           
-        </div>
+     
     </header>
 
     <main>
+     
         <section class="hero">
-            <div class="hero-content">
-                <h2>Services d'affûtage de skis</h2>
-                <p>Service d'affûtage et de livraison de skis et planche à neige.</p>
+         
+                <div class="logo">
+                     <img src="/logo.png" alt="Logo de Alpine Edge Tuning" width="300" height="300" style="border-radius: 50%;">
+                 </div>
+            
+              <div class="hero-content">
+              
                 <a href="form" class="btn">Réservez un entretien pour vos skis</a>
             </div>
         </section>
 
         <section id="services" class="services">
-            <div class="container">
+            <div>
                 <h2>Nos services</h2>
                 <div class="services-grid">
                     <div class="service-card">
