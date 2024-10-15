@@ -194,16 +194,38 @@
     }
 }
 
-.logo img {
-    animation: fadeIn 3s ease-out; /* Adjust duration as needed */
-    animation-fill-mode: forwards; /* Makes the element keep its final state */
+@keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo img {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUpBtn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Button starts 20 pixels below its final position */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Button moves to its normal position */
+    }
 }
 
-
 .btn {
-    animation: fadeIn 3s ease-out; 
-    animation-fill-mode: forwards;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Start fully transparent */
+    display: inline-block; /* Ensures that the button is laid out correctly */
+    animation: fadeInUpBtn 1s ease-out forwards; /* Apply the animation with a duration and easing */
+    animation-delay: 0.3s; /* Delays the start of the animation */
     background-color: #008CBA;
     color: white;
     padding: 12px 24px;
