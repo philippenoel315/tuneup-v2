@@ -2,10 +2,9 @@ import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import path from 'path';
 
-
 let sequelize: Sequelize;
 
-if (false) {
+if (true) {
   sequelize = new Sequelize(process.env.POSTGRES_URL!, {
     dialect: 'postgres',
     ssl: true,
