@@ -100,24 +100,36 @@
             gap: 2rem;
         }
         .service-card {
-          
-            background-color: #f8f8f8;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border:solid 1px #f0f0f0;
+border-radius: 10px;
+background-color: rgb(232, 232, 232);
+overflow: hidden;
         }
+    
         .service-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+            cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: 200px;
+    /* object-fit: cover; */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.service-card img:hover {
+    transform: scale(1.05); /* Zoom in slightly */
+    
+}
+
         .service-card-content {
+            /* border-left: solid 1px black; */
+  
+
+
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 0.5rem;
             font-size: 1.25rem;
-            font-weight: bold;
             margin: 0 0 8px 0;
         }
         /* Styles de la section à propos */
@@ -165,7 +177,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
+margin:0 2rem;        }
         /* Styles responsifs */
         @media (max-width: 768px) {
             .header-content, .about-content, .footer-content {
@@ -181,7 +193,6 @@
         }
         .price {
             font-size: 1.5rem;
-            font-weight: bold;
             margin: 0 0 16px 0;
         }
 
@@ -272,39 +283,42 @@
                 <h2>Nos services</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <img src="/sharp.jpg" alt="Aiguisage des carres">
+                        <a href="/form">
+                            <img src="/sharp.jpg" alt="Aiguisage des carres">
+                        </a>
                         <div class="service-card-content">
                             <h3>Aiguisage + fartage</h3>
-                            <p class="price">30$</p>
+                            <p class="price">40$</p>
                         </div>
                     </div>
+                    
                     <div class="service-card">
-                        <img src="/wax.jpg" alt="Fartage de base">
+                        <a href="/form">
+                            <img src="/wax.jpg" alt="Fartage de base">
+                        </a>
                         <div class="service-card-content">
                             <h3>Fartage de base</h3>
                             <p class="price">20$</p>
                         </div>
                     </div>
+                    
                     <div class="service-card">
-                        <img src="/ajust.jpg" alt="Réglages des fixations">
+                        <a href="/form">
+                            <img src="/ajust.jpg" alt="Réglages des fixations">
+                        </a>
                         <div class="service-card-content">
-                            <h3>Réglages des fixations</h3>
+                            <h3>Ajustement des fixations</h3>
                             <p class="price">10$</p>
                         </div>
                     </div>
-                    <div class="service-card">
-                        <img src="/delivery.jpg" alt="Livraison">
-                        <div class="service-card-content">
-                            <h3>Livraison</h3>
-                            <p class="price">10$</p>
-                        </div>
-                    </div>
+                    
+               
                 </div>
             </div>
         </section>
 
         <section id="contact" class="contact">
-            <div class="container">
+            <div class="">
                 <h2>Prêt pour un réglage?</h2>
                 <p>Contactez-nous aujourd'hui pour réserver votre rendez-vous d'affûtage de skis</p>
                 <a href="#" class="btn">Contactez-nous</a>
@@ -313,7 +327,7 @@
     </main>
 
     <footer>
-        <div class="container footer-content">
+        <div class="footer-content">
             <div>
                 <h3>Affutage Pro</h3>
                 <!-- <p>123 Powder Lane, Snowville, QC</p> -->
