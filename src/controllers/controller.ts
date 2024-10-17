@@ -18,6 +18,7 @@ export async function submitOrder(req: Request, res: Response) {
   try {
     const {id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
 
+
     const emailData: OrderAttributes = {
     id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status,
       notes
@@ -42,6 +43,7 @@ res.status(200).send(thankYouHtml);
 catch(error:any){
   throw new Error(error);
 }
+
   } catch (error) {
     console.error('Error submitting order:', error);
     if (!res.headersSent) {
