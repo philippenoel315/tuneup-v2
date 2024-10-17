@@ -20,18 +20,18 @@ export async function submitOrder(req: Request, res: Response) {
 
     const emailData: OrderAttributes = {
     id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status,
-      notes: ''
+      notes
     };
 try{
  const order = await Order.create(emailData);
-
  const thankYouHtml = await ejs.renderFile(
-  path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
+  path.join(__dirname, '..', '..', 'static', 'thank-you.ejs'), 
   order
 );
+
 const confirmationHtml = await ejs.renderFile(
-  path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), 
-  {name: name, email: email, service: service, ski_length: ski_length, notes: notes}
+  path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'),
+  {id:order.id, name: name, email: email, service: service, ski_length: ski_length, notes: notes}
 );
 const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Confirmation', html: confirmationHtml};
 
