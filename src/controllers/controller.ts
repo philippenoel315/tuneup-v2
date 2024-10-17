@@ -67,7 +67,7 @@ export const authenticate = (req: Request, res: Response) => {
   try {
     const { password } = req.body;
     if (password === process.env.ADMIN_PASSWORD) {
-      res.status(200).send(adminHtml);
+      // res.status(200).send(adminHtml);
     } else {
       res.sendFile(join(__dirname, '..', '..', 'static', 'authenticateHtml.html'));
     }
@@ -79,7 +79,7 @@ export const authenticate = (req: Request, res: Response) => {
 
 export const adminDashboard = async (req: Request, res: Response) => {
 
-  
+
 };
 
 
