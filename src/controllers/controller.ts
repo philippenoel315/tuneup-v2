@@ -13,37 +13,34 @@ const __dirname = path.dirname(__filename);
 
 export async function submitOrder(req: Request, res: Response) {
   try {
-    const { name, email, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
+    const { name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
     console.log(req.body);  
 
     const emailData: OrderAttributes = {
-      name, email, phoneNumber, ski_brand, ski_model, ski_length, service, status,
-      notes: '' // Use nullish coalescing operator
+      name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status,
+      notes: ''
     };
 try{
-  await Order.create(emailData);
+ const order = await Order.create(emailData);
+
+ const thankYouHtml = await ejs.renderFile(
+  path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
+  order
+);
+const confirmationHtml = await ejs.renderFile(
+  path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), 
+  {name: name, email: email, service: service, ski_length: ski_length, notes: notes}
+);
+const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Confirmation', html: confirmationHtml};
+
+await sendEmail(options);
+
+res.status(200).send(thankYouHtml);
 }
 catch(error:any){
   throw new Error(error);
 }
    
- 
-        const thankYouHtml = await ejs.renderFile(
-      path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
-      emailData
-    );
-
-
-
-        const confirmationHtml = await ejs.renderFile(
-      path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), 
-      {name: name, email: email, service: service, ski_length: ski_length, notes: notes}
-    );
-const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Confirmation', html: confirmationHtml};
-
-   await sendEmail(options);
-
-    res.status(200).send(thankYouHtml);
   } catch (error) {
     console.error('Error submitting order:', error);
     if (!res.headersSent) {
@@ -54,6 +51,11 @@ const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande
 
 export const getOrders = async (req: Request, res: Response) => {
   try {
+    const orders = await Order.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      order: [['createdAt', 'DESC']]
+    });
+    res.json(orders);
   } catch (error) {
     console.error('Error fetching orders:', error);
     res.status(500).send('An error occurred while fetching orders.');

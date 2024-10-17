@@ -110,27 +110,27 @@ overflow: hidden;
             cursor: pointer;
     border-radius: 10px 10px 0 0;
     width: 100%;
-    height: 200px;
-    /* object-fit: cover; */
-    transition: transform 0.3s ease; /* Smooth transition */
+    height: 300px;
+    transition: transform 0.3s ease;
 }
 
 .service-card img:hover {
-    transform: scale(1.05); /* Zoom in slightly */
+    transform: scale(1.05);
     
 }
 
         .service-card-content {
-            /* border-left: solid 1px black; */
   
-
-
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 0.5rem;
             font-size: 1.25rem;
             margin: 0 0 8px 0;
+        }
+
+        .step{
+            font-size: large;
         }
         /* Styles de la section à propos */
         .about {
@@ -318,11 +318,32 @@ margin:0 2rem;        }
         </section>
 
         <section id="contact" class="contact">
-            <div class="">
-                <h2>Prêt pour un réglage?</h2>
-                <p>Contactez-nous aujourd'hui pour réserver votre rendez-vous d'affûtage de skis</p>
-                <a href="#" class="btn">Contactez-nous</a>
-            </div>
+            <section id="how-it-works" class="how-it-works">
+                <div >
+                    <h2>Comment ça fonctionne?</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <h3>1. Réservation</h3>
+                            <p>Contactez-nous pour réserver votre rendez-vous d'affûtage de skis.</p>
+                        </div>
+                        <div class="step">
+                            <h3>2. Collecte</h3>
+                            <p>Le dimanche soir entre 19h et 21h, nous venons chercher vos skis à l'endroit qui vous convient.</p>
+                        </div>
+                        <div class="step">
+                            <h3>3. Affûtage</h3>
+                            <p>Nous affûtons où cirons selon le service demandé</p>
+                        </div>
+                        <div class="step">
+                            <h3>4. Livraison</h3>
+                            <p>Nous vous ramenons vos skis affûtés, prêts pour votre prochaine journée de glisse.</p>
+                        </div>
+                    </div>
+                    <div class="cta">
+                        <a href="/form" class="btn">Réservez maintenant</a>
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
 
@@ -330,7 +351,6 @@ margin:0 2rem;        }
         <div class="footer-content">
             <div>
                 <h3>Affutage Pro</h3>
-                <!-- <p>123 Powder Lane, Snowville, QC</p> -->
             </div>
             <div>
                 <p>&copy; 2024 Affutage Pro. Tous droits réservés.</p>

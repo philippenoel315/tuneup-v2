@@ -3,10 +3,12 @@ import sequelize from '../db/db.js';
 import { OrderAttributes, OrderCreationAttributes } from '../types/types.js';
 
 class Order extends Model<OrderAttributes, OrderCreationAttributes> implements OrderAttributes {
+  public id!: number; // Adding ID field
   public name!: string;
   public ski_brand!: string;
   public ski_model!: string;
   public ski_length!: number;
+  public address!: string;
   public email!: string;
   public phoneNumber!: string;
   public service!: string;
@@ -15,6 +17,11 @@ class Order extends Model<OrderAttributes, OrderCreationAttributes> implements O
 }
 
 Order.init({
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false
@@ -24,6 +31,10 @@ Order.init({
     allowNull: false
   },
   phoneNumber: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  address: {
     type: DataTypes.STRING,
     allowNull: false
   },
