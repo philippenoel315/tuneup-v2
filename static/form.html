@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de Réservation de Ski</title>
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=105024&format=png&color=000000" type="image/x-icon">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #e6f2ff;
+            background-color: #f2f2f2;
             color: #333;
             line-height: 1.6;
             padding: 20px;
@@ -15,7 +17,6 @@
             margin: 0 auto;
         }
         h1 {
-            color: #0066cc;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -72,7 +73,7 @@
 </head>
 <body>
     <h1>Demande d'entretien de skis</h1>
-    <h4>Veuillez remplir le formulaire ci-dessous nous vous contacterons dans les plus brefs délais</h4>
+    <h4>Veuillez remplir le formulaire ci-dessous vous recevrez un courriel avec les instructions.</h4>
     <form action="/submit" method="post">
         <label for="name">Nom complet :</label>
         <input type="text" id="name" name="name" required>
@@ -82,6 +83,9 @@
         
         <label for="phoneNumber">Numéro de téléphone :</label>
         <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+        <label for="address">Adresse :</label>
+        <input type="text" id="address" name="address" required>
 
         <label for="ski_brand">Marque de ski :</label>
         <input type="text" id="ski_brand" name="ski_brand" required>
@@ -106,6 +110,10 @@
             <div style="display: flex; flex-direction: row; align-items: baseline;">
                 <input style="margin-right: 10px;" type="radio" id="fartage" name="service" value="Fartage">
                 <label for="fartage">Fartage 20$</label>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: baseline;">
+                <input style="margin-right: 10px;" type="checkbox" id="affutage" name="service" value="Affûtage">
+                <label for="affutage">Ajustement 10$</label>
             </div>
         </div>
 

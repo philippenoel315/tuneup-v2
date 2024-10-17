@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import express, { Router, Request, Response } from 'express';
-import path from 'path';
 import * as orderController from '../controllers/controller.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,6 +15,13 @@ router.get('/form', (req: Request, res: Response) => {
 router.get('/', (req: Request, res: Response) => {
   res.sendFile(join(__dirname, '..', '..', 'static', 'welcome.html'));
 });
+
+router.get('/admin',(req:Request, res:Response)=>{
+  res.sendFile(join(__dirname, '..', '..', 'static', 'authenticateHtml.html'));
+
+});
+
+router.post('/authenticate', orderController.authenticate);
 
 router.post('/submit', orderController.submitOrder);
 

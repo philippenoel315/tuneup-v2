@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You for Your Order - Alpine Edge Tuning</title>
+    <title>Merci pour votre commande - Affûtage Pro</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,45 +14,38 @@
                     <!-- Header -->
                     <tr>
                         <td class="header">
-                            <h1>Alpine Edge Tuning</h1>
+                            <h1>Affûtage Pro</h1>
                         </td>
                     </tr>
                     <!-- Main Content -->
                     <tr>
                         <td class="main-content">
-                            <h2>Thank You for Your Order!</h2>
-                            <p>Dear [Customer Name],</p>
-                            <p>We wanted to take a moment to thank you for choosing Alpine Edge Tuning for your ski maintenance needs. We truly appreciate your business and trust in our services.</p>
-                            <p>Your order details:</p>
+                            <h2>Merci pour votre commande!</h2>
+                            <p>Cher <%= name %>,</p>
+                            <p>Merci de nous confier l'entretien de vos skis.</p>
+                            <p>Détails de votre commande:</p>
                             <table role="presentation" class="order-details">
                                 <tr>
-                                    <td class="order-label"><strong>Order Number:</strong></td>
-                                    <td class="order-value">#12345</td>
+                                    <td class="order-label"><strong>Numéro de commande:</strong></td>
+                                    <td class="order-value"><%= id %></td>
                                 </tr>
                                 <tr>
                                     <td class="order-label"><strong>Service(s):</strong></td>
-                                    <td class="order-value">Edge Sharpening, Base Waxing</td>
-                                </tr>
-                                <tr>
-                                    <td class="order-label"><strong>Estimated Completion:</strong></td>
-                                    <td class="order-value">March 20, 2024</td>
+                                    <td class="order-value"><%= service %></td>
                                 </tr>
                             </table>
-                            <p>We're working hard to ensure your skis are in perfect condition for your next adventure on the slopes. Our expert technicians will give your equipment the care and attention it deserves.</p>
-                            <p>If you have any questions or need to make changes to your order, please don't hesitate to contact us. We're here to help!</p>
+                            <!-- <a href="#">Vous pouvez voir l'état complet de votre commande ici</a> -->
+                            <p>Si vous avez des questions ou souhaitez modifier votre commande, n'hésitez pas à nous contacter. Nous sommes là pour vous aider!</p>
                             <div class="cta-container">
-                                <a href="mailto:info@alpineedgetuning.com" class="cta-button">Contact Us</a>
+                                <a href="mailto:admin@affutagepro.com" class="cta-button">Contactez-nous</a>
                             </div>
-                            <p class="closing-note">Thank you again for choosing Alpine Edge Tuning. We look forward to helping you achieve peak performance on the mountain!</p>
+                          
                         </td>
                     </tr>
                     <tr>
                         <td class="footer">
-                            <p>Alpine Edge Tuning</p>
-                            <p>123 Powder Lane, Snowville, QC</p>
-                            <p>Phone: (555) 123-4567</p>
-                            <p class="social-text">Follow us on social media for tips and updates!</p>
-                         
+                            <p style="margin: 5px;">Affûtage Pro</p>
+                            <p style="margin: 5px;">admin@affutagepro.com</p>
                         </td>
                     </tr>
                 </table>

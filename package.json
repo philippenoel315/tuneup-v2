@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "npx tsx src/index.ts",
-    "build": "rimraf dist && tsc",
+    "dev": "nodemon --exec npx tsx src/index.ts",
+    "build": "tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,19 +19,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vercel/postgres": "^0.10.0",
+    "are-we-there-yet": "^4.0.2",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
+    "gauge": "^5.0.2",
+    "glob": "^11.0.0",
+    "inflight": "^1.0.6",
     "node-fetch": "^2.7.0",
     "nodemailer": "^6.9.15",
     "nodemon": "^3.1.7",
+    "npmlog": "^7.0.1",
     "pg": "^8.13.0",
     "pg-hstore": "^2.3.4",
     "pip": "^0.0.1",
-    "sequelize": "^6.37.4",
-    "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sequelize": "^6.37.4"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",

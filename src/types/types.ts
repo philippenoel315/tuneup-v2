@@ -1,9 +1,11 @@
 import { Optional } from 'sequelize';
 
 export interface OrderAttributes {
+  id: number;
   name: string;
   email: string;
   phoneNumber: string;
+  address: string;
   ski_brand: string;
   ski_model: string;
   ski_length: number;

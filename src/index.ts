@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import router from './routes/routes.js';
 import sequelize from './db/db.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const __filename = fileURLToPath(import.meta.url);
