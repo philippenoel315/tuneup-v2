@@ -2,10 +2,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { EmailOptions } from '../types/types.js';
 import ejs from 'ejs';
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import { sendEmail } from '../mailer.js';
 import Order from '../models/order.js';
 import { OrderAttributes } from '../types/types.js';
+import { join } from 'path';
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,11 +16,10 @@ const __dirname = path.dirname(__filename);
 
 export async function submitOrder(req: Request, res: Response) {
   try {
-    const { name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
-    console.log(req.body);  
+    const {id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
 
     const emailData: OrderAttributes = {
-      name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status,
+    id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status,
       notes: ''
     };
 try{
@@ -40,7 +42,6 @@ res.status(200).send(thankYouHtml);
 catch(error:any){
   throw new Error(error);
 }
-   
   } catch (error) {
     console.error('Error submitting order:', error);
     if (!res.headersSent) {
@@ -61,6 +62,26 @@ export const getOrders = async (req: Request, res: Response) => {
     res.status(500).send('An error occurred while fetching orders.');
   }
 };
+
+export const authenticate = (req: Request, res: Response) => {
+  try {
+    const { password } = req.body;
+    if (password === process.env.ADMIN_PASSWORD) {
+      res.status(200).send(adminHtml);
+    } else {
+      res.sendFile(join(__dirname, '..', '..', 'static', 'authenticateHtml.html'));
+    }
+  } catch (error) {
+    console.error('Error submitting auth:', error);
+    res.status(500).send('An error occurred while submitting auth.');
+  }
+};
+
+export const adminDashboard = async (req: Request, res: Response) => {
+
+  
+};
+
 
 
 
