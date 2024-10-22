@@ -29,4 +29,6 @@ router.get('/orders', orderController.getOrders);
 
 router.post('/update-status', orderController.updateStatus);
 
+router.post('/verify-email', orderController.verifyEmail);
+
 export default router;

@@ -10,8 +10,29 @@ import { join } from 'path';
 
 
 
+
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+export async function verifyEmail (req: Request, res: Response){
+
+  const {id, name, email, ski_length, service, notes }: OrderAttributes = req.body;
+  try{
+    const confirmationHtml = await ejs.renderFile(
+      path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), 
+      {name: name, email: email, service: service, ski_length: ski_length, notes: notes}
+    );
+    const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Confirmation', html: confirmationHtml};
+    await sendEmail(options);
+  
+  }
+  catch(error:any){
+    throw new Error(error);
+  }
+
+};
 
 
 export async function submitOrder(req: Request, res: Response) {
@@ -36,6 +57,7 @@ const confirmationHtml = await ejs.renderFile(
 );
 const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Confirmation', html: confirmationHtml};
 
+
 await sendEmail(options);
 
 res.status(200).send(thankYouHtml);
@@ -47,7 +69,7 @@ catch(error:any){
   } catch (error) {
     console.error('Error submitting order:', error);
     if (!res.headersSent) {
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).sendFile(path.resolve(__dirname, '../../static/errors/500.html'));
     }
   }
 }
@@ -60,8 +82,8 @@ export const getOrders = async (req: Request, res: Response) => {
     });
     res.json(orders);
   } catch (error) {
-    console.error('Error fetching orders:', error);
-    res.status(500).send('An error occurred while fetching orders.');
+          res.status(500).sendFile(path.resolve(__dirname, '../../static/email/500.html'));
+
   }
 };
 
@@ -74,8 +96,7 @@ export const authenticate = (req: Request, res: Response) => {
       res.sendFile(join(__dirname, '..', '..', 'static', 'authenticateHtml.html'));
     }
   } catch (error) {
-    console.error('Error submitting auth:', error);
-    res.status(500).send('An error occurred while submitting auth.');
+          res.status(500).sendFile(path.resolve(__dirname, '../../static/email/500.html'));
   }
 };
 
@@ -83,8 +104,6 @@ export const adminDashboard = async (req: Request, res: Response) => {
 
 
 };
-
-
 
 
 export const sendOrderEmail = async (data: OrderAttributes) => {
@@ -117,7 +136,6 @@ export const sendOrderEmail = async (data: OrderAttributes) => {
     
     await sendEmail({ to: process.env.EMAIL_USER||'', subject, text: '', html });
   } catch (error) {
-    console.error('Error sending order details email:', error);
     throw new Error('An error occurred while sending the order details email.');
   }
 };
