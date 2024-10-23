@@ -37,18 +37,22 @@ export async function verifyEmail (req: Request, res: Response){
 
 export async function submitOrder(req: Request, res: Response) {
   try {
-    const {id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
+    
+    let {id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status, notes }: OrderAttributes = req.body;
 
+    if (typeof service === 'string') {
+      service = [service];
+    }
 
     const emailData: OrderAttributes = {
     id, name, email, address, phoneNumber, ski_brand, ski_model, ski_length, service, status,
-      notes: ''
+      notes
     };
-try{
+try {
  const order = await Order.create(emailData);
 
  const thankYouHtml = await ejs.renderFile(
-  path.join(__dirname, '..', '..', 'static', 'email', 'thank-you.ejs'), 
+  path.join(__dirname, '..', '..', 'static', 'thank-you.ejs'), 
   order
 );
 const confirmationHtml = await ejs.renderFile(
@@ -65,7 +69,6 @@ res.status(200).send(thankYouHtml);
 catch(error:any){
   throw new Error(error);
 }
-
   } catch (error) {
     console.error('Error submitting order:', error);
     if (!res.headersSent) {
@@ -83,7 +86,6 @@ export const getOrders = async (req: Request, res: Response) => {
     res.json(orders);
   } catch (error) {
           res.status(500).sendFile(path.resolve(__dirname, '../../static/email/500.html'));
-
   }
 };
 
