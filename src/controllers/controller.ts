@@ -57,7 +57,7 @@ try {
 );
 const confirmationHtml = await ejs.renderFile(
   path.join(__dirname, '..', '..', 'static', 'email', 'confirmation.ejs'), 
-  {name: name, email: email, service: service, ski_length: ski_length, notes: notes}
+  {id: order.id, name: name, email: email, service: service, ski_length: ski_length, notes: notes}
 );
 const options:EmailOptions = {to: email, subject: 'Confirmation de votre demande - Affûtage Pro', text: 'Confirmation', html: confirmationHtml};
 
