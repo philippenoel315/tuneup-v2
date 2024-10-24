@@ -47,9 +47,10 @@ export async function submitOrder(req: Request, res: Response) {
   };
   
   const order = await Order.create(emailData);
+  console.log(order);
   const thankYouHtml = await ejs.renderFile(
     path.join(__dirname, '..', '..', 'static', 'thank-you.ejs'), 
-    emailData
+   order,
   );
 
   const confirmationHtml = await ejs.renderFile(
