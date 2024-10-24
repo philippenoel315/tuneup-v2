@@ -21,7 +21,7 @@
                     <tr>
                         <td class="main-content">
                             <h2>Merci pour votre commande!</h2>
-                            <p>Cher <%= name %>,</p>
+                            <p>Cher <%= order.name %>,</p>
                             <p>Merci de nous confier l'entretien de vos skis.</p>
                             <p>Détails de votre commande:</p>
                             <table role="presentation" class="order-details">
@@ -31,7 +31,7 @@
                                 </tr>
                                 <tr>
                                     <td class="order-label"><strong>Service(s):</strong></td>
-                                    <td class="order-value"><%= service %></td>
+                                    <td class="order-value"><%= order.service %></td>
                                 </tr>
                             </table>
                             <!-- <a href="#">Vous pouvez voir l'état complet de votre commande ici</a> -->

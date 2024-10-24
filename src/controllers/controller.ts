@@ -50,7 +50,7 @@ export async function submitOrder(req: Request, res: Response) {
   console.log(order);
   const thankYouHtml = await ejs.renderFile(
     path.join(__dirname, '..', '..', 'static', 'thank-you.ejs'), 
-   order,
+    { order: emailData, id: order.id }
   );
 
   const confirmationHtml = await ejs.renderFile(
