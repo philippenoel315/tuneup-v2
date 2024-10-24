@@ -18,8 +18,9 @@ router.get('/', (req: Request, res: Response) => {
 
 router.get('/admin',(req:Request, res:Response)=>{
   res.sendFile(join(__dirname, '..', '..', 'static', 'authenticateHtml.html'));
-
 });
+
+
 
 router.post('/authenticate', orderController.authenticate);
 
@@ -28,5 +29,10 @@ router.post('/submit', orderController.submitOrder);
 router.get('/orders', orderController.getOrders);
 
 router.post('/update-status', orderController.updateStatus);
+
+router.post('/verify-email', orderController.verifyEmail);
+
+
+
 
 export default router;

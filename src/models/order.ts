@@ -11,7 +11,7 @@ class Order extends Model<OrderAttributes, OrderCreationAttributes> implements O
   public address!: string;
   public email!: string;
   public phoneNumber!: string;
-  public service!: string;
+  public service!: string[];
   public notes!: string;
   public status!: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
 }
@@ -51,9 +51,9 @@ Order.init({
     allowNull: false
   },
   service: {
-    type: DataTypes.STRING,
+    type: DataTypes.ARRAY(DataTypes.STRING),
     allowNull: false
-  },
+  },  
   notes: {
     type: DataTypes.STRING,
     allowNull: true

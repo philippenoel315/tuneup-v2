@@ -9,7 +9,7 @@ export interface OrderAttributes {
   ski_brand: string;
   ski_model: string;
   ski_length: number;
-  service: string;
+  service: string[];
   status: 'En attente' | 'En cours' | 'Completé' | 'Annulé';
   notes: string;
 }
