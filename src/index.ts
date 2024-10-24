@@ -5,6 +5,7 @@ import { dirname, join } from 'path';
 import router from './routes/routes.js';
 import sequelize from './db/db.js';
 import dotenv from 'dotenv';
+import path from 'path';
 dotenv.config();
 
 
@@ -18,9 +19,12 @@ app.use(bodyParser.json());
 app.use(express.static(join(__dirname, '..', 'static')));
 app.use(express.static(join(__dirname, '..', 'assets')));
 
-app.set('view engine', 'ejs');
-app.set('views', join(__dirname, '..', 'static', 'email'));
+app.set('views', [
+  path.join(__dirname, '..', 'static'),
+  path.join(__dirname, '..', 'static', 'email')
+]);
 
+app.set('view engine', 'ejs');
 app.use('/', router);
 
 app.use((req, res, next) => {

@@ -9,7 +9,19 @@ const __dirname = dirname(__filename);
 const router: Router = express.Router();
 
 router.get('/form', (req: Request, res: Response) => {
-  res.sendFile(join(__dirname, '..', '..', 'static', 'form.html'));
+  res.render('form', {
+    id: '', 
+    name: '', 
+    email: '', 
+    service: [], 
+    phoneNumber:'',
+    address:'',
+    ski_brand: '',
+    ski_model:'',
+    ski_length: '', 
+    notes: '',
+    error:false
+  });  
 });
 
 router.get('/', (req: Request, res: Response) => {
