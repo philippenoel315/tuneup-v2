@@ -2,11 +2,14 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import express, { Router, Request, Response } from 'express';
 import * as orderController from '../controllers/controller.js';
+import orderRoutes from './orders.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const router: Router = express.Router();
+
+router.use('/',orderRoutes)
 
 router.get('/form', (req: Request, res: Response) => {
   res.render('form', {
@@ -34,11 +37,12 @@ router.get('/admin',(req:Request, res:Response)=>{
 
 
 
+
 router.post('/authenticate', orderController.authenticate);
 
 router.post('/submit', orderController.submitOrder);
 
-router.get('/orders', orderController.getOrders);
+// router.get('/orders', orderController.getOrders);
 
 router.post('/update-status', orderController.updateStatus);
 
