@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes - Affûtage Pro</title>
+    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #0066cc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0066cc;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestion des Commandes</h1>
+
+    <!-- This div will load the order data when the page is rendered -->
+    <div hx-get="/orders" hx-trigger="load" hx-target="#ordersTable">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Commande</th>
+                    <th>Nom Client</th>
+                    <th>Marque et Modèle</th>
+                    <th>Date Demandée</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTable">
+                <!-- Order data will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- You can add more static content below or more htmx fetches -->
+</body>
+</html>

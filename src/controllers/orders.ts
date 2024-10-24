@@ -3,10 +3,8 @@ import { fileURLToPath } from 'url';
 import { EmailOptions } from '../types/types.js';
 import ejs from 'ejs';
 import e, { Request, Response } from 'express';
-import { sendEmail } from '../mailer.js';
 import Order from '../models/order.js';
-import { OrderAttributes } from '../types/types.js';
-import { join } from 'path';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,12 +19,33 @@ export const createOrder = async (req: Request, res: Response): Promise<void> =>
 };
 
 export const getOrders = async (req: Request, res: Response): Promise<void> => {
+
+    let orders
     try {
         const orders = await Order.findAll();
-        res.status(200).json(orders);
+            let orderRows = orders.map(order => `
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.name}</td>
+                    <td>${order.ski_brand} ${order.ski_model} (${order.ski_length} cm)</td>
+                    <td>${order.service.join(', ')}</td>
+                    <td>${order.status}</td>
+                    <td>${order.notes}</td>
+                </tr>
+            `).join('');
+
+            res.send(orderRows); // Send the HTML directly
+
     } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve orders' });
     }
+    
+    
+    
+    ;
+    
+
+
 };
 
 export const updateOrder = async (req: Request, res: Response): Promise<void> => {
