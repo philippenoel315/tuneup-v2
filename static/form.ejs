@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de Réservation de Ski</title>
     <link rel="icon" href="https://img.icons8.com/?size=100&id=105024&format=png&color=000000" type="image/x-icon">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
+            document.getElementById('form').addEventListener('submit', showSpinner)
+            function showSpinner() {
+                document.getElementById('buttonText').style.display = 'none';
+                document.getElementById('spinner').style.display = 'inline-block';
+            }
+        });
+        </script>
+        
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -73,7 +83,7 @@
 <body>
     <h1>Demande d'entretien de skis</h1>
     <h4>Veuillez remplir le formulaire ci-dessous vous recevrez un courriel avec les instructions.</h4>
-    <form action="/submit" method="post">
+    <form id="form" action="/submit" method="post" onsubmit="showSpinner()">
         <label for="name">Nom complet :</label>
         <input type="text" id="name" name="name" value="<%= name %>" required>
 
@@ -125,8 +135,14 @@
         <% if (error) { %>
             <span id="error" style="color: red; padding: 20px; text-align: center;">Une erreur se trouve dans le formulaire, veuillez vérifier les champs</span>
             <% } %>
-    
-        <button style=" margin-top: 10px;" type="submit">Soumettre</button>
-    </form>
+            <button id="submitBtn" style="margin-top: 10px;" type="submit"> 
+                <span id="buttonText">Soumettre</span>
+                <span id="spinner" style="display: none;">
+                    Envoi...
+                </span>
+            </button>
+                </form>
+
+            
 </body>
 </html>
