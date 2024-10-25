@@ -23,18 +23,41 @@ export const getOrders = async (req: Request, res: Response): Promise<void> => {
     let orders
     try {
         const orders = await Order.findAll();
-            let orderRows = orders.map(order => `
-                <tr>
-                    <td>${order.id}</td>
-                    <td>${order.name}</td>
-                    <td>${order.ski_brand} ${order.ski_model} (${order.ski_length} cm)</td>
-                    <td>${order.service.join(', ')}</td>
-                    <td>${order.status}</td>
-                    <td>${order.notes}</td>
-                </tr>
-            `).join('');
 
-            res.send(orderRows); // Send the HTML directly
+        if(orders[0]){
+
+            let orderKeys = orders.length > 0 
+            ? Object.keys(orders[0].dataValues).filter(key => !['createdAt', 'updatedAt'].includes(key))
+            : [];
+
+        
+     let orderTable = `
+             <thead>
+                 <tr>
+                    <th></th> ${orderKeys.map(key => `<th>${key}</th>`).join('')}
+                 </tr>
+             </thead>
+             <tbody>
+
+                 ${orders.map(order => `
+                     
+                     <tr>
+                     <td colspan="1">
+                            <input type="checkbox" name="orderCheckbox" value="${order.id}" />
+                        </td>
+                        ${orderKeys.map(key => `<td>${(order as any)[key]}</td>`).join('')}
+                        <td colspan="1"><button id="modifier" value="${order.id}" name="">Modifier</button></td>
+                     </tr>
+                 `).join('')}
+             </tbody>
+     `;
+     res.send(orderTable);
+        }else{
+            res.send(`<h1>Aucune commande</h1>`)
+        }
+   
+        
+
 
     } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve orders' });

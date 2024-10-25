@@ -41,19 +41,8 @@
 
     <!-- This div will load the order data when the page is rendered -->
     <div hx-get="/orders" hx-trigger="load" hx-target="#ordersTable">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID Commande</th>
-                    <th>Nom Client</th>
-                    <th>Marque et Modèle</th>
-                    <th>Date Demandée</th>
-                    <th>Statut</th>
-                </tr>
-            </thead>
-            <tbody id="ordersTable">
-                <!-- Order data will be dynamically inserted here -->
-            </tbody>
+        <table id="ordersTable">
+    
         </table>
     </div>
 
