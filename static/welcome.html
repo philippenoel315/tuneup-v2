@@ -3,51 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Affutage Pro - Services experts d'entretien de ski à Québec. Réservez dès aujourd'hui pour des skis prêts pour l'hiver!">
+
     <title>Affutage Pro - Services experts d'affûtage de skis</title>
     <link rel="icon" href="https://img.icons8.com/?size=100&id=105024&format=png&color=000000" type="image/x-icon">
     <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #f8f8f8;
+            --text-color: #333;
+            --white: #fff;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
         }
+
         .container {
             width: 90%;
             max-width: 1200px;
+            margin: 0 auto;
             padding: 0 20px;
         }
-     
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        .logo img {
-            margin-right: 1rem;
-        }
-        .logo h1 {
-            font-size: 1.5rem;
-            color: #0066cc;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
-        }
-        nav a:hover {
-            color: #0066cc;
-        }
-        /* Styles de la section héroïque */
+
         .hero {
             background-image: url('/header.jpg');
             background-size: cover;
@@ -58,103 +40,109 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
+            color: var(--white);
         }
+
         .hero-content {
             /* background-color: rgba(0, 0, 0, 0.7); */
             padding: 2rem;
             border-radius: 8px;
         }
+
         .hero h2 {
-            font-size: 2.5rem;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
             margin-bottom: 1rem;
         }
+
         .btn {
             display: inline-block;
-            background-color: #0066cc;
-            color: #fff;
+            background-color: var(--primary-color);
+            color: var(--white);
             padding: 0.75rem 1.5rem;
             text-decoration: none;
             border-radius: 25px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            font-weight: bold;
         }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
         .btn:hover {
             background-color: #0052a3;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .services {
-            width: 90%;
-            max-width: 1200px;
-            padding: 0 20px;
-            margin:auto ;
-            padding: 4rem 0;
 
-            background-color: #fff;
+        .services {
+            background-color: var(--secondary-color);
+            padding: 4rem 0;
         }
+
         .services h2 {
             text-align: center;
             margin-bottom: 2rem;
         }
+
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-        .service-card {
-            border:solid 1px #f0f0f0;
-border-radius: 10px;
-background-color: rgb(232, 232, 232);
-overflow: hidden;
-        }
-    
-        .service-card img {
-            cursor: pointer;
-    border-radius: 10px 10px 0 0;
-    width: 100%;
-    height: 300px;
-    transition: transform 0.3s ease;
-}
 
-.service-card img:hover {
-    transform: scale(1.05);
-    
-}
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
 
         .service-card-content {
-  
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0.5rem;
-            font-size: 1.25rem;
-            margin: 0 0 8px 0;
+            padding: 1.5rem;
+            text-align: center;
         }
 
-        .step{
-            font-size: large;
+        .service-card h3 {
+            margin: 0 0 0.5rem;
         }
-        /* Styles de la section à propos */
-        .about {
-            padding: 4rem 0;
-            background-color: #f8f8f8;
+
+        .service-card-content p {
+            margin-bottom: 1rem;
         }
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: bold;
         }
-        .about-image {
-            flex: 1;
-        }
-        .about-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .about-text {
-            flex: 1;
-        }
-        /* Styles de la section contact */
+
         .contact {
+            background-color: var(--primary-color);
+            color: var(--white);
             padding: 4rem 0;
             background-color: #0066cc;
             color: #fff;
@@ -170,30 +158,24 @@ overflow: hidden;
         /* Styles du pied de page */
         footer {
             background-color: #333;
-            color: #fff;
+            color: var(--white);
             padding: 2rem 0;
+            text-align: center;
         }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-margin:0 2rem;        }
-        /* Styles responsifs */
+
         @media (max-width: 768px) {
-            .header-content, .about-content, .footer-content {
-                flex-direction: column;
-                text-align: center;
+            .hero-content {
+                padding: 1rem;
             }
+
             nav ul {
-                margin-top: 1rem;
+                width: 150px;
+                height: 150px;
             }
-            .about-image, .about-text {
-                width: 100%;
+
+            .services-grid {
+                grid-template-columns: 1fr;
             }
-        }
-        .price {
-            font-size: 1.5rem;
-            margin: 0 0 16px 0;
         }
 
         @keyframes fadeIn {
@@ -255,9 +237,33 @@ margin:0 2rem;        }
     transform: scale(1.1);
 }
 
+.contact {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
 
 
     </style>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Affutage Pro",
+          "image": "/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lac-Beauport",
+            "addressRegion": "Québec"
+          },
+          "description": "Expert ski tuning services including sharpening, waxing, and binding adjustments.",
+          "url": "https://affutagepro.com"
+        }
+        </script>
+        
+
 </head>
 <body>
     <header>
@@ -278,63 +284,58 @@ margin:0 2rem;        }
             </div>
         </section>
 
-        <section id="services" class="services">
-            <div>
-                <h2>Nos services</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <a href="/form">
-                            <img src="/sharp.jpg" alt="Aiguisage des carres">
-                        </a>
-                        <div class="service-card-content">
-                            <h3>Aiguisage + fartage</h3>
-                            <p class="price">40$</p>
-                        </div>
+        <section id="services" class="services container">
+            <h2>Nos services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <img src="/sharp.jpg" alt="Aiguisage des carres">
+                    <div class="service-card-content">
+                        <h3>Aiguisage + fartage</h3>
+                        <p>Affutage de carre à 89 degrés ou 88 degrés (veuillez mentionner) + fartage avec cire toute conditions</p>
+                        <p class="price">40$</p>
+                        <a href="/form" class="btn">Réserver</a>
                     </div>
-                    
-                    <div class="service-card">
-                        <a href="/form">
-                            <img src="/wax.jpg" alt="Fartage de base">
-                        </a>
-                        <div class="service-card-content">
-                            <h3>Fartage de base</h3>
-                            <p class="price">20$</p>
-                        </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <img src="/wax.jpg" alt="Fartage de base">
+                    <div class="service-card-content">
+                        <h3>Fartage de base</h3>
+                        <p>Fartage avec cire toute conditions</p>
+                        <p class="price">20$</p>
+                        <a href="/form" class="btn">Réserver</a>
                     </div>
-                    
-                    <div class="service-card">
-                        <a href="/form">
-                            <img src="/ajust.jpg" alt="Réglages des fixations">
-                        </a>
-                        <div class="service-card-content">
-                            <h3>Ajustement des fixations</h3>
-                            <p class="price">10$</p>
-                        </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <img src="/ajust.jpg" alt="Réglages des fixations">
+                    <div class="service-card-content">
+                        <h3>Ajustement des fixations</h3>
+                        <p>Réglage professionnel des fixations selon votre poids et niveau de ski.</p>
+                        <p class="price">10$</p>
+                        <a href="/form" class="btn">Réserver</a>
                     </div>
-                    
-               
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact">
-            <section id="how-it-works" class="how-it-works">
-                <div >
+            <section id="contact" class="contact">
+                <div class="container">
                     <h2>Comment ça fonctionne?</h2>
                     <div class="steps">
-                        <div class="step">
+                        <div class="step fade-in">
                             <h3>1. Réservation</h3>
                             <p>Contactez-nous pour réserver votre rendez-vous d'affûtage de skis.</p>
                         </div>
-                        <div class="step">
+                        <div class="step fade-in">
                             <h3>2. Collecte</h3>
-                            <p>Le dimanche soir entre 19h et 21h, nous venons chercher vos skis à l'endroit qui vous convient.</p>
+                            <p>Nous venons chercher vos skis à l'endroit et la date entendue qui vous convient.</p>
                         </div>
-                        <div class="step">
+                        <div class="step fade-in">
                             <h3>3. Affûtage</h3>
-                            <p>Nous affûtons où cirons selon le service demandé</p>
+                            <p>Nous affûtons ou cirons selon le service demandé.</p>
                         </div>
-                        <div class="step">
+                        <div class="step fade-in">
                             <h3>4. Livraison</h3>
                             <p>Nous vous ramenons vos skis affûtés, prêts pour votre prochaine journée de glisse.</p>
                         </div>
@@ -344,7 +345,7 @@ margin:0 2rem;        }
                     </div>
                 </div>
             </section>
-        </section>
+    
     </main>
 
     <footer>
