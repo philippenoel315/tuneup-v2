@@ -3,7 +3,7 @@ import sequelize from '../db/db.js';
 import { OrderAttributes, OrderCreationAttributes } from '../types/types.js';
 
 class Order extends Model<OrderAttributes, OrderCreationAttributes> implements OrderAttributes {
-  public id!: number; // Adding ID field
+  public id!: number;
   public name!: string;
   public ski_brand!: string;
   public ski_model!: string;
